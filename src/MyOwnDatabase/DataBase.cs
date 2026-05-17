@@ -44,5 +44,24 @@ namespace MyOwnDatabase
             string json = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<T>(json);
         }
+
+        public List<T> LoadAll<T> () where T : IEntity
+        {
+            string tablePath = Path.Combine(_rootPath, typeof(T).Name);
+            if (!Directory.Exists(tablePath))
+                return new List<T>();
+
+            List<T> result = new List<T>();
+            string[] filePaths = Directory.GetFiles(tablePath, "*.json");
+            
+            foreach (var filePath in filePaths)
+            {
+                string json = File.ReadAllText(filePath);
+                T entity = JsonSerializer.Deserialize<T>(json);
+                if (entity != null)
+                    result.Add(entity);
+            }
+            return result;
+        }
     }
 }
