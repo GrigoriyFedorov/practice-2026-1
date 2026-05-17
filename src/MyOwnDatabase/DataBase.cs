@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,22 @@ namespace MyOwnDatabase
                     result.Add(entity);
             }
             return result;
+        }
+
+        public void Delete<T>(Guid id) where T : IEntity
+        {
+            string filePath = Path.Combine(_rootPath, typeof(T).Name, $"{id}.json");
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+        }
+
+        public void DeleteAll<T>() where T : IEntity
+        {
+            string tablePath = Path.Combine(_rootPath, typeof(T).Name);
+
+            if (Directory.Exists(tablePath))
+                Directory.Delete(tablePath, true);
         }
     }
 }
