@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -79,6 +80,11 @@ namespace MyOwnDatabase
 
             if (Directory.Exists(tablePath))
                 Directory.Delete(tablePath, true);
+        }
+
+        public List<T> Find<T>(Func<T, bool> predicate) where T : IEntity
+        {
+            return LoadAll<T>().Where(predicate).ToList();
         }
     }
 }
