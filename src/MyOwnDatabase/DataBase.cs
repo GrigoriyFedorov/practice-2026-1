@@ -34,5 +34,15 @@ namespace MyOwnDatabase
             string json = JsonSerializer.Serialize(entity, options);
             File.WriteAllText(filePath, json);
         }
+        public T Load<T> (Guid id) where T : IEntity
+        {
+            string filePath = Path.Combine(_rootPath, typeof(T).Name, $"{id}.json");
+
+            if (!File.Exists(filePath))
+                return default;
+
+            string json = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<T>(json);
+        }
     }
 }
