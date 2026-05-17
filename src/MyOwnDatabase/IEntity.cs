@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MyOwnDatabase
 {
-    internal interface IEntity
+    public interface IEntity
     {
+        Guid Id { get; set; } 
     }
 }

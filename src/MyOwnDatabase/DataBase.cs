@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+
 
 namespace MyOwnDatabase
 {
@@ -16,6 +18,21 @@ namespace MyOwnDatabase
 
             if (!Directory.Exists(_rootPath))
                 Directory.CreateDirectory(rootPath);
+        }
+
+        public void Save<T> (T entity) where T : IEntity
+        {
+            string tablePath = Path.Combine(_rootPath, typeof(T).Name);
+            Directory.CreateDirectory(tablePath);
+
+            if (entity.Id == Guid.Empty)
+                entity.Id = Guid.NewGuid();
+
+            string filePath = Path.Combine(tablePath, $"{entity.Id}.json");
+
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(entity, options);
+            File.WriteAllText(filePath, json);
         }
     }
 }
