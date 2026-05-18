@@ -135,9 +135,17 @@ public List<T> Find<T>(Func<T, bool> predicate) where T : IEntity
 - Сохранение, загрузка, обновление, удаление
 - Поиск по условию (например, пользователи старше 18 лет)
 - Пример вывода в консоль:
-```
-fff
-```
+
+<p align="center">
+  <img src="images/Screenshot1.png" width="400"><br>
+  <i>Рис. 1 – Просмотр содержимого базы данных</i>
+</p>
+
+<p align="center">
+  <img src="images/Screenshot2.png" width="400"><br>
+  <i>Рис. 1 – Выполняем поиск с фильтром</i>
+</p>
+
 
 ## 5. Результаты работы
 
