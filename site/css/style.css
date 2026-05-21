@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7;
+  color: #2d3436;
+  background: #f5f6fa;
+}
+
+header {
+  background: #1e3a5f;
+  color: #fff;
+  padding: 2rem 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 18px;
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+nav a:hover {
+  border-color: #f0a500;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: #1e3a5f;
+  border-bottom: 3px solid #f0a500;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  margin: 1.8rem 0 0.8rem;
+  color: #1e3a5f;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin: 0.8rem 0 1.5rem 2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+code {
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+footer {
+  text-align: center;
+  padding: 1.2rem;
+  background: #1e3a5f;
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+.uml-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Courier New', monospace;
+  margin: 2rem 0;
+}
+
+.uml-models {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.uml-class {
+  border: 2px solid #333;
+  border-radius: 8px;
+  min-width: 170px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.uml-title {
+  padding: 0.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+  border-radius: 6px 6px 0 0;
+  color: #111;
+}
+
+.uml-body {
+  padding: 0.7rem;
+  border-radius: 0 0 6px 6px;
+  line-height: 1.7;
+  color: #222;
+}
+
+.interface .uml-title { background: #81d4fa; }
+.model .uml-title { background: #a5d6a7; }
+.database .uml-title { background: #ffcc80; }
+
+.uml-arrow {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #444;
+  text-align: center;
+}
+
+.architecture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 2rem 0;
+}
+
+.arch-box {
+  border: 2px solid #1e3a5f;
+  background: #e3f2fd;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.arch-arrow {
+  font-size: 1.8rem;
+  color: #1e3a5f;
+}
+
+.code-block {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.code-block pre {
+  margin: 0;
+  color: #333;
+  background: transparent;
+}
+
+.kw,
+.mt,
+.iface,
+.str {
+  background: none;
+}
+.kw { color: #0000ff; font-weight: bold; }
+.mt { color: #795e26; }
+.iface { color: #267f99; }
+.str { color: #a31515; }
+
+
+.storage-diagram {
+  background: #f5f5f5;
+  border: 2px solid #999;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  font-family: 'Courier New', monospace;
+  margin: 1.5rem 0;
+  line-height: 2;
+}
+
+.folder-name {
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+.storage-file {
+  margin-left: 25px;
+  color: #444;
+}
+
+
+.journal-entry {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+figure {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+figcaption {
+  font-style: italic;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+
+.participant-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+a {
+  color: #1e3a5f;
+}
+
+a:hover {
+  color: #f0a500;
+}
