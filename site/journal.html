@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Журнал — Собственная база данных на C#</title>
+  <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+  <header>
+    <h1>Собственная база данных на C#</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О проекте</a>
+      <a href="participants.html">Участники</a>
+      <a href="journal.html">Журнал</a>
+      <a href="resources.html">Ресурсы</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Журнал работ</h2>
+
+    <article class="journal-entry">
+      <h3>Неделя 1–2 &mdash; Настройка инструментов и проектирование</h3>
+      <p>Создан репозиторий на GitHub, освоены базовые команды Git (clone, add, commit, push, checkout). Изучен синтаксис Markdown. Проведён анализ подходов к хранению данных: один общий JSON-файл vs отдельные файлы для каждой записи. Выбрана архитектура «таблица = папка, запись = JSON-файл». Определён интерфейс <code>IEntity</code> с обязательным идентификатором.</p>
+    </article>
+
+    <article class="journal-entry">
+      <h3>Неделя 3–5 &mdash; Реализация ядра базы данных</h3>
+      <p>Реализован класс <code>DataBase</code> с методами <code>Save</code>, <code>Load</code>, <code>LoadAll</code>, <code>Delete</code>, <code>DeleteAll</code>. Добавлен метод <code>Find</code> для поиска по предикату. Созданы тестовые модели <code>User</code> и <code>Product</code>. Разработано консольное приложение с интерактивным меню для демонстрации всех операций.</p>
+      <figure>
+        <!-- 🔻 ЗАМЕНИ НА СКРИНШОТ ДОБАВЛЕНИЯ ОБЪЕКТА -->
+        <img src="images/Screenshot2.png" alt="Добавление объекта" style="max-width:100%;">
+        <figcaption>Рис. 1 — Добавление нового объекта в базу данных</figcaption>
+      </figure>
+    </article>
+
+    <article class="journal-entry">
+      <h3>Неделя 6–8 &mdash; Документирование и веб-сайт</h3>
+      <p>Написана техническая документация в Markdown: исследование предметной области, руководство для начинающих, описание архитектуры. Создан статический веб-сайт на чистом HTML и CSS с нуля. Сайт включает UML-диаграмму классов и схему взаимодействия, свёрстанные без использования изображений. Добавлены скриншоты работы программы. Сформирован итоговый отчёт по проектной практике.</p>
+      <figure>
+        <!-- 🔻 ЗАМЕНИ НА СКРИНШОТ С ПОИСКОМ -->
+        <img src="images/Screenshot3.png" alt="Поиск по условию" style="max-width:100%;">
+        <figcaption>Рис. 2 — Поиск объектов по условию</figcaption>
+      </figure>
+    </article>
+  </main>
+
+  <footer>
+    <p>Проектная практика, 2026 &mdash; Григорий Фёдоров</p>
+  </footer>
+</body>
+</html>
