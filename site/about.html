@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О проекте — Собственная база данных на C#</title>
+  <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body>
+  <header>
+    <h1>Собственная база данных на C#</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О проекте</a>
+      <a href="participants.html">Участники</a>
+      <a href="journal.html">Журнал</a>
+      <a href="resources.html">Ресурсы</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>О проекте</h2>
+    <p><strong>Цель:</strong> разработать собственную файловую базу данных на C#, которая хранит объекты в JSON-файлах и поддерживает все основные операции с данными, без использования готовых СУБД.</p>
+    <p><strong>Задачи:</strong> спроектировать архитектуру, реализовать CRUD-операции, создать консольное приложение для демонстрации, оформить документацию и веб-сайт.</p>
+
+    <h3>Архитектура классов</h3>
+    <p>База данных спроектирована так, чтобы работать с <strong>любыми типами объектов</strong>. Все хранимые классы реализуют единый интерфейс <code>IEntity</code>, а ядро <code>DataBase</code> оперирует ими через обобщённые методы.</p>
+    
+    <div class="uml-diagram">
+      <div class="uml-class interface">
+        <div class="uml-title">«interface»<br>IEntity</div>
+        <div class="uml-body">+ Id : Guid</div>
+      </div>
+
+      <div class="uml-arrow">↓<br>реализуют</div>
+
+      <div class="uml-models">
+        <div class="uml-class model">
+          <div class="uml-title">Class A</div>
+          <div class="uml-body">+ Свойства ...</div>
+        </div>
+        <div class="uml-class model">
+          <div class="uml-title">Class B</div>
+          <div class="uml-body">+ Свойства ...</div>
+        </div>
+        <div class="uml-class model">
+          <div class="uml-title">Class C</div>
+          <div class="uml-body">+ Свойства ...</div>
+        </div>
+      </div>
+
+      <div class="uml-arrow">↓<br>использует</div>
+
+      <div class="uml-class database">
+        <div class="uml-title">DataBase&lt;T&gt;</div>
+        <div class="uml-body">+ Save(T)<br>+ Load(Guid) : T<br>+ LoadAll() : List&lt;T&gt;<br>+ Delete(Guid)<br>+ Find(predicate) : List&lt;T&gt;</div>
+      </div>
+    </div>
+    <p style="text-align:center; font-style:italic; margin-top:1rem;">Рис. 1 — UML-диаграмма: интерфейс, модели и ядро базы данных</p>
+
+    <h3>Структура хранения данных</h3>
+    <p>Каждая таблица — это папка на диске. Каждая запись — отдельный JSON-файл. Имя папки соответствует типу объекта, имя файла — уникальному идентификатору.</p>
+    
+    <div class="storage-diagram">
+      <div class="storage-folder">
+        <div class="folder-name">📁 rootPath/</div>
+        <div class="storage-folder" style="margin-left:25px;">
+          <div class="folder-name">📁 User/</div>
+          <div class="storage-file">📄 a1b2c3d4...json</div>
+          <div class="storage-file">📄 e5f6g7h8...json</div>
+        </div>
+        <div class="storage-folder" style="margin-left:25px;">
+          <div class="folder-name">📁 Product/</div>
+          <div class="storage-file">📄 i9j0k1l2...json</div>
+        </div>
+        <div class="storage-folder" style="margin-left:25px;">
+          <div class="folder-name">📁 ClassName/</div>
+          <div class="storage-file">📄 {Id}.json</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; font-style:italic;">Рис. 2 — Файловая структура хранения данных</p>
+
+    <h3>Как происходит сохранение: метод Save</h3>
+    <p>Метод <code>Save&lt;T&gt;</code> работает с любым типом, реализующим <code>IEntity</code>. Определяет папку по имени типа, генерирует GUID для новых записей, сериализует объект в JSON и сохраняет в файл.</p>
+    
+    <div class="code-block">
+      <pre><code><span class="kw">public void</span> <span class="mt">Save</span>&lt;<span class="kw">T</span>&gt;(<span class="kw">T</span> entity) <span class="kw">where</span> <span class="kw">T</span> : <span class="iface">IEntity</span>
+{
+    <span class="kw">string</span> tablePath = Path.Combine(_rootPath, <span class="kw">typeof</span>(<span class="kw">T</span>).Name);
+    Directory.CreateDirectory(tablePath);
+
+    <span class="kw">if</span> (entity.Id == Guid.Empty)
+        entity.Id = Guid.NewGuid();
+
+    <span class="kw">string</span> filePath = Path.Combine(tablePath, <span class="str">$"</span>{entity.Id}<span class="str">.json"</span>);
+    <span class="kw">string</span> json = JsonSerializer.Serialize(entity);
+    File.WriteAllText(filePath, json);
+}</code></pre>
+    </div>
+    <p style="text-align:center; font-style:italic;">Листинг 1 — Метод сохранения объекта в JSON-файл</p>
+  </main>
+
+  <footer>
+    <p>Проектная практика, 2026 &mdash; Григорий Фёдоров</p>
+  </footer>
+</body>
+</html>
